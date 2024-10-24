@@ -7,8 +7,8 @@
 html{
     font-size: 14px;
     font-family: 'Roboto Mono', monospace;
-    background-color: rgb( 0,  43,  54);
-    color: rgb(131, 148, 150);
+    background-color: rgb(253, 246, 227);
+    color: rgb(101, 123, 131);
 }
 
 a{
@@ -34,10 +34,15 @@ h1{
 }
 
 .subforum-title{
-    background-color: rgb(7,  54,  66);
+    background-color: rgb(218, 211, 188);
     padding: 5px;
     border-radius: 5px;
     margin: 4px;
+}
+
+.subforum-description *{
+    margin-block: 0;
+
 }
 
 .subforum-row{
@@ -49,7 +54,7 @@ h1{
     padding: 10px;
     margin: 4px;
     border-radius: 5px;
-    background-color: rgb(7,  54,  66);
+    background-color: rgb(238, 232, 213);
 }
 
 .center{
@@ -60,4 +65,307 @@ h1{
 
 .subforum-icon{
     font-size: 45px;
+}
+
+/*Navbar*/
+
+header{
+    margin-inline: 10px;
+}
+
+.navbar{
+    display: flex;
+    align-items: center;
+}
+
+.navigation{
+    background-color: rgb(101, 123, 131);
+    padding: 10px;
+    width: 65%;
+    display: inline-block;
+    border-radius: 5px;
+    max-height: 80px;
+    margin-right: 10px;
+}
+
+.nav-list{
+    list-style-type: none;
+    overflow: hidden;
+}
+
+.nav-item a{
+    float:right;
+    display: block;
+    text-align: center;
+    margin-inline: 20px;
+    font-size: 20px;
+    padding: 10px;
+    color: #fff;
+}
+
+.nav-item a:hover{
+    background-color: rgb(0, 0, 0, 0.1);
+}
+
+.close-icon i{
+    font-size: 60px;
+    float: left;
+    cursor: pointer;
+    color: #fff;
+}
+
+.hide{
+    display: none;
+}
+
+.bar-icon{
+    font-size: 60px;
+    display: inline-block;
+    margin-right: 10px;
+    color: rgb(218, 211, 188);
+    cursor: pointer;
+}
+
+
+@font-face{
+    font-family: Platinum-Sign;
+    src:url('platinum-sign/Platinum-Sign.ttf');
+}
+
+.brand{
+    font-size: 60px;
+    display: inline-block;
+    font-family: Platinum-Sign;
+    letter-spacing: -10px;
+}
+
+/*search box*/
+.search-box{
+    border: solid 1px rgb(101, 123, 131);;
+    margin-top: 20px;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    box-shadow: 1px 2px 3px rgb(101, 123, 131);;
+}
+
+.search-box select{
+    padding: 10px;
+}
+
+.search-box input{
+    padding: 10px;
+}
+
+.search-box button{
+    padding: 10px;
+    background-color: #fff;
+    color: #000000
+}
+
+.search-box button:hover{
+    background-color: #000000;
+    color: #fff;
+    box-shadow: 1px 2px 3px #fff;
+}
+
+/*Forum info*/
+.forum-info{
+    padding-top: 20px;
+    background-color: rgb(238, 232, 213);
+}
+
+.chart{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/*Footer*/
+footer{
+    margin-top: 20px;
+    padding: 20px;
+    background-color: rgb(101, 123, 131);
+    display: block;
+    color: #fff;
+    text-align: center;
+}
+
+/*########################################*/
+/*posts.html*/
+
+.table-head{
+    display: flex;
+
+}
+
+.table-head div{
+    padding: 5px;
+    margin: 2px;
+    background-color: rgb(101, 123, 131);
+    color: #fff;
+    font-weight: bold;
+}
+
+.table-head .status{
+    flex: 5%;
+}
+
+.table-head .subjects{
+    flex: 70%;
+}
+
+.table-head .replies{
+    flex: 10%;
+}
+
+.table-head .last-reply{
+    flex: 20%;
+}
+
+/*Table body */
+.table-row{
+    display: flex;
+}
+
+.table-row .status, .table-row .subjects, .table-row .replies, .table-row .last-reply{
+    padding: 5px;
+    margin: 2px;
+    background-color: rgb(238, 232, 213);
+}
+
+.table-row .status{
+    flex: 5%;
+    font-size: 30px;
+    text-align: center;
+}
+
+.table-row .subjects{
+    flex: 70%;
+}
+
+.table-row .replies{
+    flex: 10%;
+}
+
+.table-row .last-reply{
+    flex: 20%;
+}
+
+/*Pagination*/
+.pagination{
+    padding: 20px;
+    font-size: 15px;
+}
+
+.pagination a{
+    color: #FF0042;
+    margin-inline: 5px;
+    padding: 5px 10px;
+    border: solid 0.5px #FF0042;
+}
+
+.pagination a:hover{
+    opacity: 0.5;
+}
+
+/*Navigation*/
+
+.navigate{
+    margin-block: 20px;
+    font-weight: lighter;
+    font-size: 24px;
+}
+
+.navigate a{
+    color: rgb(147, 161, 161);
+}
+
+.navigate a:hover{
+    color: #FF0042;
+    font-weight: bolder;
+}
+
+/*Note*/
+.note{
+    background-color: rgb(238, 232, 213);
+    padding: 20px;
+    display: block;
+}
+
+.note span{
+    font-size: 20px;
+    margin-block: 5px;
+}
+
+/*########################################*/
+/*detail.html*/
+
+.head{
+    display: flex;
+    background-color: rgb(101, 123, 131);
+    color: #fff;
+    padding: 5px;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.authors{
+    flex: 20%;
+}
+
+.content{
+    flex: 80%;
+}
+
+.body{
+    display: flex;
+    background-color: rgb(238, 232, 213);
+    padding: 10px;
+    margin-top: 5px;
+}
+
+.body .authors .username{
+    font-size: 20px;
+}
+
+.body .authors img{
+    max-width: 50px;
+    max-height: 80px;
+}
+
+.body .content .reply button{
+    border: none;
+    padding: 10px;
+    font-weight: bolder;
+    box-shadow: 4px 6px #fff;
+    cursor: pointer;
+    float: right;
+}
+
+/*Reply*/
+
+.reply-area{
+    margin-top: 50px;
+}
+
+.reply-area textarea{
+    width: 100%;
+    min-height: 100px;
+    padding: 10px;
+    margin-block: 10px;
+}
+
+.reply-area input{
+    float: right;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.reply-area input:hover{
+    border: solid 1px #000000;
+}
+
+.replies-container{
+    margin-top: 50px;
 }
