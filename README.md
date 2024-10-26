@@ -26,4 +26,11 @@
   - There are some styling inconsistencies that will need to be worked on as it relates to the color theme and arrangement of items on the page
   - There are some sizing issues when decreasing the size of the window. These would likely be visible on smaller devices like smartphones as well.  
     
+## Homepage
+![Homepage](./assets/Screenshots/homepage.png)
 
+## Categories
+![Categories](./assets/Screenshots/categories.png)
+
+## Post
+![Post](./assets/Screenshots/post.png)
