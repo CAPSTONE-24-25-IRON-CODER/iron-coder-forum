@@ -1,3 +1,17 @@
+# How to Setup the Forum
+* Ensure that you have python and pip installed on your machine!
+    * Note that these instructions are for Windows! 
+* Clone the repository:
+```
+git clone https://github.com/CAPSTONE-24-25-IRON-CODER/iron-coder-forum.git
+```
+* Enter the cloned repository:
+```
+cd iron-coder-forum
+```
+* Run `setup_project.bat' in the terminal. 
+    * Alternatively, you double click on it in the file explorer
+* The above steps should as long as you have python and pip installed.
 # Iron-Coder-Forum Work Done
 - Built the core structure of the frontend including:
   - Homepage that displays categories/topics
@@ -5,11 +19,9 @@
   - Post detail page, which displays a post and its replies
 - Implemented basic styling based on the Solarized Light theme in Iron Coder (will likely change the color theme later on)
 - Displayed a search bar, copyright bar, navigation bar, reply to post button
-- Display placeholder categories/posts in order to give a visualization of the forum layout
-- Implemented some Javascript functionality to easily navigate between the different components 
 # Iron Coder Forum Architecture
 - Frontend:
-  - The frontend is built using HTML, CSS, and Javascript
+  - The frontend is built using HTML and styled using CSS 
   - Each page currently displays the logo at the top, the navigation bar, and the copyright bar
   - home.html
     - Contains placeholder topics/categories
