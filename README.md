@@ -16,7 +16,7 @@
   - posts.html
     - Contains list of placeholder posts for a particular category
   - details.html
-    - Contains post and reply and placeholder adding comment feature
+    - Contains post, reply, and placeholder adding comment feature
 - Backend:
   - Has not been implemented yet. Planning to use Django 
    
