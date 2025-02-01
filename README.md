@@ -17,7 +17,39 @@ cd iron-coder-forum
     * Credentials that can be used for the admin page:
         *  Username: admin
         *  Password: testpassword
-# Iron-Coder-Forum Work Done
+# Work Done for Alpha Build
+* Ability to add comments/replies to posts through the UI
+    * Only signed in users are able to post comments/replies
+    * Once a user hits submit the page refreshes and the new comment/reply is displayed
+    * The comments/replies appear in the admin page under the 'Comments' or 'Replies' section and under the post that the comment was made on
+* Pagination
+    * On the categories page, five posts are listed for each page. 
+    * Users are able to navigate to the different pages by clicking on the numbered buttons.
+* Site statistics section on the homepage
+    * Displays the total number of posts, categories, users
+    * Displays the latest post (users are able to navigate to it by clicking on the hyperlink)
+    * Link to a page that displays the latest 10 posts
+* Latest 10 Posts page
+    * Displays the 10 most recent posts regardless of category. 
+    * Users are able to navigate to the posts by clicking on them
+# Known bugs
+- Blank comments and replies get posted
+- Trying to view a post when logged out will display an error
+    - This error appeared after implementing the comments/reply feature (will need to account for behavior related to being logged in) 
+- Under the last reply section for posts, When there are no replies to a post, it just says 
+<blank> by <blank>. should have a message that says "No replies yet" 
+- Cannot close the comment and reply input fields after clicking on the buttons
+- For latest post in the stats section and the 'Last post by ...' next to the categories, you are able to click on the links and view posts even if they haven't been approved yet.
+- When creating an account without setting a profile picture, application will crash when trying to view the post in the UI
+- No ability to edit comments/replies or delete them from the UI 
+ - Creating a post sometimes causes the application to crash
+    - Not sure exactly why. Only observed this happening once after randomly typing into the input fields. Might be related to signing into an admin account while trying to create a new post.
+- If you are signed into a user account on the forum and then log into an admin account on the admin page, the user will be logged out and replaced by the admin on the forum
+    - To prevent this, sign into the forum with a user account in an incognito tab
+ - There are some styling inconsistencies that will need to be worked on as it relates to the color theme and arrangement of items on the page
+ - There are some sizing issues when decreasing the size of the window. These would likely be visible on smaller devices like smartphones as well.  
+ 
+# Iron-Coder-Forum Work Done in Design 1
 * Frontend
     * Homepage, list of posts, and post pages are viewable and integrated with backend 
     * Login feature has been implemented
@@ -47,16 +79,6 @@ cd iron-coder-forum
     - Contains post, reply, and placeholder adding comment feature (will be implemented later)
 - Backend:
   - The forum’s architecture is built with Django and utilizes its Model-View template framework to manage the frontend-backend interactions. The backend consists of models that represent authors, categories, posts, comments, and replies. The author model defines user functionality while models like categories/posts define the hierarchy of the discussion forums. Django’s admin page is used to manage all of the backend elements. For authentication, Django’s auth system was used. Posts, categories, comments, and replies are connected. A post belongs to a category and can have multiple comments. Comments can have multiple replies.
-
-   
-# Known bugs
- - When creating an account without setting a profile picture, application may crash when trying to view the post in the frontend
- - Creating a post sometimes causes the application to crash
-    - Not sure exactly why. Only observed this happening once after randomly typing into the input fields. Might be related to signing into the 
-- If you are signed into a user account on the forum and then log into an admin account on the admin page, the user will be logged out and replaced by the admin on the forum
-    - To prevent this, sign into the forum with a user account in an incognito tab
- - There are some styling inconsistencies that will need to be worked on as it relates to the color theme and arrangement of items on the page
- - There are some sizing issues when decreasing the size of the window. These would likely be visible on smaller devices like smartphones as well.  
     
 ## Homepage
 ![Homepage](./assets/Screenshots/homepage.png)
