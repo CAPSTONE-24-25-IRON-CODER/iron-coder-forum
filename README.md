@@ -42,8 +42,6 @@ cd iron-coder-forum
 - For latest post in the stats section and the 'Last post by ...' next to the categories, you are able to click on the links and view posts even if they haven't been approved yet.
 - When creating an account without setting a profile picture, application will crash when trying to view the post in the UI
 - No ability to edit comments/replies or delete them from the UI 
- - Creating a post sometimes causes the application to crash
-    - Not sure exactly why. Only observed this happening once after randomly typing into the input fields. Might be related to signing into an admin account while trying to create a new post.
 - If you are signed into a user account on the forum and then log into an admin account on the admin page, the user will be logged out and replaced by the admin on the forum
     - To prevent this, sign into the forum with a user account in an incognito tab
  - There are some styling inconsistencies that will need to be worked on as it relates to the color theme and arrangement of items on the page
