@@ -32,7 +32,7 @@ class Author(models.Model):
         super(Author, self).save(*args, **kwargs)
 
 class Category(models.Model):
-    title = models.CharField(max_length=50, )
+    title = models.CharField(max_length=50)
     slug = models.SlugField(max_length=400, unique=True, blank=True)
     description = models.TextField(default="description")
     
@@ -118,4 +118,3 @@ class Post(models.Model):
     @property
     def last_reply(self):
         return self.comments.latest("date")
-    

@@ -12,7 +12,11 @@ def home(request):
     num_posts = Post.objects.all().count()
     num_users = User.objects.all().count()
     num_categories = forums.count()
-    last_post = Post.objects.latest("date")
+    try:
+        last_post = Post.objects.latest("date")
+    except:
+        last_post = []
+
     context = {
         "forums":forums,
         "num_posts":num_posts,
@@ -25,7 +29,9 @@ def home(request):
 
 def detail(request, slug):
     post = get_object_or_404(Post, slug=slug)
-    author = Author.objects.get(user=request.user)
+
+    if request.user.is_authenticated:
+        author = Author.objects.get(user=request.user)
 
     if "comment-form" in request.POST:
         comment = request.POST.get("comment")
@@ -87,7 +93,11 @@ def create_post(request):
 
 
 def latest_posts(request):
-    posts = Post.objects.all().filter(approved=True)[:10]
+    # posts = Post.objects.all().filter(approved=True)[:10]
+    posts = Post.objects.order_by('-date')[:10]
+    posts = Post.objects.filter(approved=True).order_by('-date')[:10]
+
+
     context = {
         "posts":posts,
         "title": "Latest 10 Posts"
@@ -96,6 +106,5 @@ def latest_posts(request):
     return render(request, "latest-posts.html", context)
 
 def search_result(request):
-
 
     return render(request, "search.html")
