@@ -5,59 +5,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{title}}</title>
+    <title>{{ title }}</title>
+
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="{% static 'style.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Font Preconnect and Links -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital@1&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+        <!-- Prism.js for Syntax Highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-rust.min.js"></script>
+
 </head>
 
 <body>
     <header>
-        <!--NavBar Section-->
+        <!-- Navbar Section -->
         <div class="navbar">
             <nav class="navigation hide" id="navigation">
                 <span class="close-icon" id="close-icon" onclick="showIconBar()"><i class="fa fa-close"></i></span>
                 <ul class="nav-list">
-                    <li class="nav-item"><a href="{% url "home" %}">Home</a></li>
+                    <li class="nav-item"><a href="{% url 'home' %}">Home</a></li>
                     {% if user.is_authenticated %}
-                    <li class="nav-item"><a href="{% url "logout" %}">Log Out</a></li>
+                    <li class="nav-item"><a href="{% url 'logout' %}">Log Out</a></li>
                     {% else %}
-                    <li class="nav-item"><a href="{% url "signup" %}">Sign Up</a></li>
-                    <li class="nav-item"><a href="{% url "signin" %}">Sign In</a></li>
+                    <li class="nav-item"><a href="{% url 'signup' %}">Sign Up</a></li>
+                    <li class="nav-item"><a href="{% url 'signin' %}">Sign In</a></li>
                     {% endif %}
                 </ul>
             </nav>
             <a class="bar-icon" id="iconBar" onclick="hideIconBar()"><i class="fa fa-bars"></i></a>
             <div class="brand">IRONCODER</div>
             {% if user.is_authenticated %}
-            <div style="font-size:50px;font-weight:300px;margin-left:100px;"><a href="{% url 'create_post' %}">+</a></div>
+            <div style="font-size:50px;font-weight:300;margin-left:100px;">
+                <a href="{% url 'create_post' %}">+</a>
+            </div>
             {% endif %}
         </div>
-        <!--SearchBox Section-->
-            <form action="{% url 'search_result' %}" role="form" method="GET">
+
+        <!-- SearchBox Section -->
+        <form action="{% url 'search_result' %}" method="GET" role="form">
             <div class="search-box">
                 <div>
-                    <select name="" id="">
+                    <select name="category" id="category">
                         <option value="Everything">Everything</option>
                         <option value="Titles">Titles</option>
                         <option value="Descriptions">Descriptions</option>
                     </select>
-                    <input type="text" name="q" placeholder="search ...">
-                    <button tyoe="submit" name="search"><i class="fa fa-search"></i></button>
+                    <input type="text" name="q" placeholder="Search..." required>
+                    <button type="submit" name="search"><i class="fa fa-search"></i></button>
                 </div>
             </div>
-        </form> 
+        </form>
     </header>
+
+    <!-- Content Block -->
     {% block content %}
     {% endblock content %}
 
     <footer>
-        <span>&copy;  Iron Coder | All Rights Reserved</span>
+        <span>&copy; Iron Coder | All Rights Reserved</span>
     </footer>
+
+    <!-- JavaScript -->
     <script src="{% static 'main.js' %}"></script>
 </body>
 </html>

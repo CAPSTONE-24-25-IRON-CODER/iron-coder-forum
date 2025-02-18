@@ -135,3 +135,16 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+TINYMCE_DEFAULT_CONFIG = {
+    "height": 500,
+    "plugins": "codesample",
+    "toolbar": "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | outdent indent | codesample",
+    "codesample_languages": [
+        {"text": "Python", "value": "python"},
+        {"text": "JavaScript", "value": "javascript"},
+        {"text": "Rust", "value": "rust"},  # Enable Rust syntax highlighting
+        {"text": "C++", "value": "cpp"},
+    ],
+    "menubar": True,
+    "branding": False,
+}
