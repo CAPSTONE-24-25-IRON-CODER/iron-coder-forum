@@ -14,13 +14,21 @@ function showIconBar(){
 }
 
 //Comment
-function showComment(){
+function showComment() {
     var commentArea = document.getElementById("comment-area");
-    commentArea.classList.remove("hide");
+    if (commentArea.classList.contains("hide")) {
+        commentArea.classList.remove("hide");
+    } else {
+        commentArea.classList.add("hide");
+    }
 }
 
 //Reply
-function showReplies(id){
+function showReplies(id) {
     var replyArea = document.getElementById(id);
-    replyArea.classList.remove("hide");
+    if (replyArea.classList.contains("hide")) {
+        replyArea.classList.remove("hide");
+    } else {
+        replyArea.classList.add("hide");
+    }
 }
