@@ -1,4 +1,3 @@
-
 from django.shortcuts import redirect, render, get_object_or_404
 from .models import Author, Category, Post, Comment, Reply
 from .utils import update_views
@@ -6,6 +5,9 @@ from .forms import PostForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+
+def get_author(user):
+    return Author.objects.get(user=user)
 
 def home(request):
     forums = Category.objects.all()
@@ -29,29 +31,26 @@ def home(request):
 
 def detail(request, slug):
     post = get_object_or_404(Post, slug=slug)
+    author = get_author(request.user) if request.user.is_authenticated else None
 
-    if request.user.is_authenticated:
-        author = Author.objects.get(user=request.user)
-
-    if "comment-form" in request.POST:
-        comment = request.POST.get("comment")
-        new_comment, created = Comment.objects.get_or_create(user=author, content=comment)
-        post.comments.add(new_comment.id)
-
-    if "reply-form" in request.POST:
-        reply = request.POST.get("reply")
-        commenr_id = request.POST.get("comment-id")
-        comment_obj = Comment.objects.get(id=commenr_id)
-        new_reply, created = Reply.objects.get_or_create(user=author, content=reply)
-        comment_obj.replies.add(new_reply.id)
-
+    if request.method == "POST":
+        if "comment-form" in request.POST and not post.closed:
+            comment = request.POST.get("comment")
+            new_comment, created = Comment.objects.get_or_create(user=author, content=comment)
+            post.comments.add(new_comment.id)
+        elif "reply-form" in request.POST and not post.closed:
+            reply = request.POST.get("reply")
+            comment_id = request.POST.get("comment-id")
+            comment_obj = Comment.objects.get(id=comment_id)
+            new_reply, created = Reply.objects.get_or_create(user=author, content=reply)
+            comment_obj.replies.add(new_reply.id)
 
     context = {
-        "post":post,
+        "post": post,
         "title": post.title,
+        "post_closed": post.closed,
     }
     update_views(request, post)
-
     return render(request, "detail.html", context)
 
 def posts(request, slug):

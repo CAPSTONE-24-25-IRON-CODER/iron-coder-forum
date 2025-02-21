@@ -29,7 +29,7 @@ class Author(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.fullname)
-        super(Author, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
 class Category(models.Model):
     title = models.CharField(max_length=50)
@@ -45,7 +45,7 @@ class Category(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.title)
-        super(Category, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
     
     def get_url(self):
         return reverse("posts", kwargs={
@@ -101,7 +101,10 @@ class Post(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.title)
-        super(Post, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
+
+    class Meta:
+        ordering = ['-date']
 
     def __str__(self):
         return self.title
