@@ -29,7 +29,7 @@
                 {% elif post.num_comments >= 4 %}
                 <div class="status"><i class="fa fa-fire"></i></div>
                 {% endif %}
-                
+
                 <div class="subjects">
                     <a href="{{post.get_url}}">{{post.title}}</a>
                     <br>
@@ -39,17 +39,14 @@
                     {{post.num_comments}} comments <br> {% get_hit_count for post %} views
                 </div>
 
-                {% if post.last_reply %}
                 <div class="last-reply">
-                    {{post.last_reply.date|date}}
-                    <br>By <b><a href="">{{post.last_reply.user.fullname|title}}</a></b>
+                    {% if post.last_reply %}
+                    {{ post.last_reply.date|date }}<br>
+                    By <b><a href="">{{ post.last_reply.user.fullname|title }}</a></b>
+                    {% else %}
+                        No replies yet
+                    {% endif %}
                 </div>
-                {% else %}
-                <div class="last-reply">
-                    {{post.date|date}}
-                    <br>By <b><a href="">{{post.user.fullname|title}}</a></b>
-                </div>
-                {% endif %}
                 
             </div>
             {% endfor %}
