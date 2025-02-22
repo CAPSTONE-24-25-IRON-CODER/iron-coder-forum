@@ -15,16 +15,16 @@ def home(request):
     num_users = User.objects.all().count()
     num_categories = forums.count()
     try:
-        last_post = Post.objects.latest("date")
+        last_approved_post = Post.objects.filter(approved=True).latest("date")
     except:
-        last_post = []
+        last_approved_post = []
 
     context = {
-        "forums":forums,
-        "num_posts":num_posts,
-        "num_users":num_users,
-        "num_categories":num_categories,
-        "last_post":last_post,
+        "forums": forums,
+        "num_posts": num_posts,
+        "num_users": num_users,
+        "num_categories": num_categories,
+        "last_approved_post": last_approved_post,
         "title": "Home Page"
     }
     return render(request, "forums.html", context)

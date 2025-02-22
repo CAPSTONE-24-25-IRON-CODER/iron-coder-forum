@@ -61,6 +61,10 @@ class Category(models.Model):
     def last_post(self):
         return Post.objects.filter(categories=self).latest("date")
 
+    @property
+    def last_approved_post(self):
+        return Post.objects.filter(categories=self, approved=True).latest("date")
+
 class Reply(models.Model):
     user = models.ForeignKey(Author, on_delete=models.CASCADE)
     content = models.TextField()
