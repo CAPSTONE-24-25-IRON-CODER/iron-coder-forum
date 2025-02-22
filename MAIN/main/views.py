@@ -105,5 +105,16 @@ def latest_posts(request):
     return render(request, "latest-posts.html", context)
 
 def search_result(request):
+    query = request.GET.get('q')
+    if query:
+        posts = Post.objects.filter(title__icontains=query, approved=True)
+    else:
+        posts = Post.objects.none()
 
-    return render(request, "search.html")
+    context = {
+        "objects": posts,
+        "query": query,
+        "title": "Search Results"
+    }
+
+    return render(request, "search.html", context)
