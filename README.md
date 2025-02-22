@@ -1,3 +1,4 @@
+
 # How to Setup the Forum
 * Ensure that you have python and pip installed on your machine!
     * Note that these instructions are for Windows! 
@@ -17,6 +18,26 @@ cd iron-coder-forum
     * Credentials that can be used for the admin page:
         *  Username: admin
         *  Password: testpassword
+
+# Work Done for Beta Build
+* Ability to search for posts by title, description, or by everything
+	* Relevant posts are displayed with the Status, Subjects, Replies/Views, and Last Reply for each post
+* Added engagement level status icons
+	* Locked, sad face, fire, rocket, and book
+	* Helps give an indication about the level of engagement 
+* Added "No replies yet" message for posts that have 0 comments when browsing posts in the category page or in the Latest 10 Posts page. 
+* Added ability for posts to be closed from the admin page.
+	* When a post is closed, users are no longer able to reply to it
+	* Users are presented with a "This Topic is Closed!" message and the comment/reply buttons are no longer visible
+* Added message for users that are not logged in 
+	* Message says "You need to login to comment or reply!"    
+	* Comment/reply buttons are not visible
+* Added TinyMCE rich text editor in the post creation page
+	* Users can use different fonts, font sizes, headings, text colors, highlighted text, and more. 
+	* Users have the ability to insert formatted code samples into their posts (Rust, Python, Javascript, C++)
+		* Syntax highlighting when viewing the post page 
+* Added ability for users to toggle the comment/reply input field when viewing a post
+* Added URL icon (favicon) to the base template 
 # Work Done for Alpha Build
 * Ability to add comments/replies to posts through the UI
     * Only signed in users are able to post comments/replies
@@ -34,11 +55,7 @@ cd iron-coder-forum
     * Users are able to navigate to the posts by clicking on them
 # Known bugs
 - Blank comments and replies get posted
-- Trying to view a post when logged out will display an error
-    - This error appeared after implementing the comments/reply feature (will need to account for behavior related to being logged in) 
-- Under the last reply section for posts, When there are no replies to a post, it just says 
-<blank> by <blank>. should have a message that says "No replies yet" 
-- Cannot close the comment and reply input fields after clicking on the buttons
+- Status icons in the search results page don't get updated
 - For latest post in the stats section and the 'Last post by ...' next to the categories, you are able to click on the links and view posts even if they haven't been approved yet.
 - When creating an account without setting a profile picture, application will crash when trying to view the post in the UI
 - No ability to edit comments/replies or delete them from the UI 
