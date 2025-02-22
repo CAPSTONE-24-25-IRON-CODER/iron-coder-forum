@@ -55,6 +55,7 @@ cd iron-coder-forum
     * Users are able to navigate to the posts by clicking on them
 # Known bugs
 - Blank comments and replies get posted
+- Posts that are not approoved show up in search results
 - Status icons in the search results page don't get updated
 - For latest post in the stats section and the 'Last post by ...' next to the categories, you are able to click on the links and view posts even if they haven't been approved yet.
 - When creating an account without setting a profile picture, application will crash when trying to view the post in the UI
