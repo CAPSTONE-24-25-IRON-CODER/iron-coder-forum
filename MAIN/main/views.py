@@ -5,6 +5,7 @@ from .forms import PostForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.db.models import Q
 
 def get_author(user):
     return Author.objects.get(user=user)
@@ -106,8 +107,14 @@ def latest_posts(request):
 
 def search_result(request):
     query = request.GET.get('q')
+    category = request.GET.get('category')
     if query:
-        posts = Post.objects.filter(title__icontains=query, approved=True)
+        if category == "Titles":
+            posts = Post.objects.filter(title__icontains=query, approved=True)
+        elif category == "Descriptions":
+            posts = Post.objects.filter(content__icontains=query, approved=True)
+        else:  # Everything
+            posts = Post.objects.filter((Q(title__icontains=query) | Q(content__icontains=query)), approved=True)
     else:
         posts = Post.objects.none()
 
