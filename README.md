@@ -1,34 +1,6 @@
 
-# How to Setup the Forum
-* Ensure that you have python and pip installed on your machine!
-    * Note that these instructions are for Windows! 
-* Clone the repository:
-```
-git clone https://github.com/CAPSTONE-24-25-IRON-CODER/iron-coder-forum.git
-```
-* Enter the cloned repository:
-```
-cd iron-coder-forum
-```
-* Enter the MAIN folder
-```
-cd MAIN
-```
-* Go to https://djecrety.ir/, generate a secret key, and copy it
-* In MAIN, create a new file called .env
-* Type the following into the .env file and save it:
-```
-SECRET_KEY="<paste your secret key here>"
-DEBUG=True
-```
-* Run `setup_project.bat' in the terminal. 
-    * Alternatively, you double click on it in the file explorer
-* The above steps should work as long as you have python and pip installed.
-* Now, navigate to `http://127.0.0.1:8000/` in the browser
-* To access the admin page, navigate to `http://127.0.0.1:8000/admin`
-    * Credentials that can be used for the admin page:
-        *  Username: admin
-        *  Password: testpassword
+# How to Access the Forum
+* Navigate to https://www.ironcoder.forum/ 
 
 # Work Done for Beta Build
 * Ability to search for posts by title, description, or by everything
