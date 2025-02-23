@@ -19,6 +19,7 @@ cd MAIN
 * Type the following into the .env file and save it:
 ```
 SECRET_KEY="<paste your secret key here>"
+DEBUG=True
 ```
 * Run `setup_project.bat' in the terminal. 
     * Alternatively, you double click on it in the file explorer
