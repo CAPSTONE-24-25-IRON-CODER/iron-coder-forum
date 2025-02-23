@@ -19,7 +19,7 @@ SECRET_KEY = env("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env("DEBUG")
 
-ALLOWED_HOSTS = ["ironcoder.forum", "www.ironcoder.forum"]
+ALLOWED_HOSTS = ["ironcoder.forum", "www.ironcoder.forum", "127.0.0.1"]
 
 
 # Application definition
@@ -51,6 +51,14 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+# Uncomment when in debug
+# SECURE_PROXY_SSL_HEADER = None
+# SECURE_SSL_REDIRECT = False
+
+# Comment when in debug
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT = True
+
 ROOT_URLCONF = "project.urls"
 
 TEMPLATES = [
@@ -77,9 +85,20 @@ WSGI_APPLICATION = "project.wsgi.application"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+
+    'default': {
+
+        'ENGINE': 'django.db.backends.postgresql',
+
+        'NAME': env('DB_NAME'),
+
+        'USER': env('DB_USER'),
+
+        'PASSWORD': env('DB_PASSWORD'),
+
+        'HOST': env("DB_HOST"),
+
+        'PORT': '5432',
     }
 }
 
