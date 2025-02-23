@@ -1,13 +1,12 @@
 import environ
+import django_heroku
 import os
 
 from pathlib import Path
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 env = environ.Env(
-    # set casting, default value
     DEBUG=(bool, False)
 )
 
@@ -18,9 +17,9 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env('DEBUG')
+DEBUG = env("DEBUG")
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["ironcoder.forum", "www.ironcoder.forum"]
 
 
 # Application definition
@@ -39,6 +38,7 @@ INSTALLED_APPS = [
     'register',
     'crispy_forms',
     'crispy_bootstrap4',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -132,14 +132,38 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 TINYMCE_DEFAULT_CONFIG = {
     "height": 500,
-    "plugins": "codesample",
-    "toolbar": "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | outdent indent | codesample",
+    "plugins": "codesample image imagetools media",
+    "toolbar": "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | outdent indent | codesample | image media",
     "codesample_languages": [
+        {"text": "Rust", "value": "rust"},
         {"text": "Python", "value": "python"},
         {"text": "JavaScript", "value": "javascript"},
-        {"text": "Rust", "value": "rust"},  # Enable Rust syntax highlighting
         {"text": "C++", "value": "cpp"},
     ],
     "menubar": True,
     "branding": False,
+    "image_advtab": True,  
+    "automatic_uploads": True,  
+    "images_upload_url": "/upload_image/",  
 }
+
+
+# AWS Configuration
+AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
+
+AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME')
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+AWS_S3_FILE_OVERWRITE = False
+
+STORAGES = {
+    "default": {
+        "BACKEND": "storages.backends.s3boto3.S3StaticStorage",
+    },
+
+    "staticfiles": {
+        "BACKEND": "storages.backends.s3boto3.S3StaticStorage",
+    },
+}
+
+django_heroku.settings(locals())

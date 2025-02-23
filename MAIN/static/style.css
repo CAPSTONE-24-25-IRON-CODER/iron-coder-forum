@@ -183,7 +183,7 @@ header{
 
 @font-face{
     font-family: Platinum-Sign;
-    src:url('platinum-sign/Platinum-Sign.ttf');
+    src: url("https://iron-coder-forum-media.s3.us-east-2.amazonaws.com/platinum-sign/Platinum-Sign.ttf") format("truetype");
 }
 
 .brand{

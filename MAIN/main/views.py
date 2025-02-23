@@ -6,6 +6,10 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db.models import Q
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.core.files.storage import default_storage
+import os
 
 def get_author(user):
     return Author.objects.get(user=user)
@@ -125,3 +129,21 @@ def search_result(request):
     }
 
     return render(request, "search.html", context)
+
+
+@csrf_exempt
+def upload_image(request):
+    if request.method == "POST" and request.FILES.get("file"):
+        uploaded_file = request.FILES["file"]
+        
+        upload_folder = 'post-media/'
+        
+        file_path = os.path.join(upload_folder, uploaded_file.name)
+        
+        file_path = default_storage.save(file_path, uploaded_file)
+        
+        file_url = default_storage.url(file_path)
+        
+        return JsonResponse({"location": file_url})
+    
+    return JsonResponse({"error": "No file uploaded"}, status=400)
