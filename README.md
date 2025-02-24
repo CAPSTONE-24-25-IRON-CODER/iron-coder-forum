@@ -1,6 +1,7 @@
 
 # How to Access the Forum
-* Navigate to https://www.ironcoder.forum/ 
+* Navigate to https://www.ironcoder.forum/
+	* If above link doesn't work, try: https://iron-coder-forum-0d50dd333d97.herokuapp.com/ 
 
 # Work Done for Beta Build
 * Ability to search for posts by title, description, or by everything
