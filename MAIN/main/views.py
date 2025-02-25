@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from .models import Author, Category, Post, Comment, Reply
 from .utils import update_views
-from .forms import PostForm
+from .forms import PostForm, CommentForm, ReplyForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
@@ -37,23 +37,35 @@ def home(request):
 def detail(request, slug):
     post = get_object_or_404(Post, slug=slug)
     author = get_author(request.user) if request.user.is_authenticated else None
+    comment_form = CommentForm()
+    reply_form = ReplyForm()
 
     if request.method == "POST":
         if "comment-form" in request.POST and not post.closed:
-            comment = request.POST.get("comment")
-            new_comment, created = Comment.objects.get_or_create(user=author, content=comment)
-            post.comments.add(new_comment.id)
+            comment_form = CommentForm(request.POST)
+            if comment_form.is_valid():
+                new_comment = comment_form.save(commit=False)
+                new_comment.user = author
+                new_comment.save()
+                post.comments.add(new_comment.id)
+                return redirect('detail', slug=slug)
         elif "reply-form" in request.POST and not post.closed:
-            reply = request.POST.get("reply")
-            comment_id = request.POST.get("comment-id")
-            comment_obj = Comment.objects.get(id=comment_id)
-            new_reply, created = Reply.objects.get_or_create(user=author, content=reply)
-            comment_obj.replies.add(new_reply.id)
+            reply_form = ReplyForm(request.POST)
+            if reply_form.is_valid():
+                new_reply = reply_form.save(commit=False)
+                new_reply.user = author
+                new_reply.save()
+                comment_id = request.POST.get("comment-id")
+                comment_obj = Comment.objects.get(id=comment_id)
+                comment_obj.replies.add(new_reply.id)
+                return redirect('detail', slug=slug)
 
     context = {
         "post": post,
         "title": post.title,
         "post_closed": post.closed,
+        "comment_form": comment_form,
+        "reply_form": reply_form,
     }
     update_views(request, post)
     return render(request, "detail.html", context)
@@ -97,7 +109,6 @@ def create_post(request):
 
 
 def latest_posts(request):
-    # posts = Post.objects.all().filter(approved=True)[:10]
     posts = Post.objects.order_by('-date')[:10]
     posts = Post.objects.filter(approved=True).order_by('-date')[:10]
 
@@ -116,7 +127,7 @@ def search_result(request):
         if category == "Titles":
             posts = Post.objects.filter(title__icontains=query, approved=True)
         elif category == "Descriptions":
-            posts = Post.objects.filter(content__icontains=query, approved=True)
+            posts = Post.objects.filter(content__icontains(query, approved=True))
         else:  # Everything
             posts = Post.objects.filter((Q(title__icontains=query) | Q(content__icontains=query)), approved=True)
     else:

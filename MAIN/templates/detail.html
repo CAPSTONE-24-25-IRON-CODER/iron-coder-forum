@@ -44,7 +44,8 @@
         <form action="." method="post">
             {% csrf_token %}
             <div class="comment-area hide" id="comment-area">
-                <textarea name="comment" id="" placeholder="comment here ... "></textarea>
+                {{ comment_form.media }}
+                {{ comment_form.content }}
                 <input type="submit" value="submit" name="comment-form">
             </div>
         </form>
@@ -55,7 +56,7 @@
         {% endif %}
         <!--Comments Section-->
 
-        {% for comment in post.comments.all  %}
+        {% for comment in post.comments.all %}
         <div class="comments-container">
             <div class="body">
                 <div class="authors">
@@ -66,7 +67,7 @@
                     <div>Points: <u>{{comment.user.points}}</u></div>
                 </div>
                 <div class="content">
-                    {{comment.content}}
+                    {{comment.content|safe}}
                     <br>
                     {% if request.user.is_authenticated and not post.closed %}
                     <div class="comment">
@@ -81,7 +82,8 @@
         <form action="." method="post">
             {% csrf_token %}
             <div class="comment-area hide" id="comment{{comment.id}}">
-                <textarea name="reply" id="" placeholder="reply here ... "></textarea>
+                {{ reply_form.media }}
+                {{ reply_form.content }}
                 <input type="submit" value="submit" name="reply-form">
                 <input type="hidden" name="comment-id" value="{{comment.id}}">
             </div>
@@ -100,7 +102,7 @@
                     <div>Points: <u>{{reply.user.points}}</u></div>
                 </div>
                 <div class="content">
-                    {{reply.content}}
+                    {{reply.content|safe}}
                     <br>
                 </div>
             </div>
