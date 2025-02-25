@@ -163,7 +163,17 @@ TINYMCE_DEFAULT_CONFIG = {
     "branding": False,
     "image_advtab": True,  
     "automatic_uploads": True,  
-    "images_upload_url": "/upload_image/",  
+    "images_upload_url": "/upload_image/",
+    "codesample_global_prismjs": True,
+     "content_style": """
+        pre[class*="language-"] {
+            padding: 1em;
+            margin: 0;
+            overflow: auto;
+            background: #2d2d2d;
+            border-radius: 5px;
+        }
+    """,
 }
 
 
