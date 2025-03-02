@@ -19,7 +19,7 @@ SECRET_KEY = env("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env("DEBUG")
 
-ALLOWED_HOSTS = ["ironcoder.forum", "www.ironcoder.forum", "127.0.0.1"]
+ALLOWED_HOSTS = ["ironcoder.forum", "www.ironcoder.forum", "127.0.0.1", "ironcoderforum.com", "www.ironcoderforum.com"]
 
 
 # Application definition
@@ -52,12 +52,12 @@ MIDDLEWARE = [
 ]
 
 # Uncomment when in debug
-SECURE_PROXY_SSL_HEADER = None
-SECURE_SSL_REDIRECT = False
+# SECURE_PROXY_SSL_HEADER = None
+# SECURE_SSL_REDIRECT = False
 
 # Comment when in debug
-# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-# SECURE_SSL_REDIRECT = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT = True
 
 ROOT_URLCONF = "project.urls"
 
